@@ -1,0 +1,50 @@
+<odoo>
+  <data>
+
+  <record id="method_conector_marcas.action_get_operation" model="ir.actions.server">
+    <field name="name">Obtener Tipos de Operaciones desde Minori</field>
+    <field name="model_id" ref="stock.model_stock_production_lot"/>
+    <field name="binding_model_id" ref="stock.model_stock_production_lot"/>
+    <field name="state">code</field>
+    <field name="code">
+        if records:
+            records.sync_operaciones()
+    </field>
+  </record>
+
+    <record id="method_conector_marcas.operaciones_minori_view_tree" model="ir.ui.view">
+      <field name="name">method.conector.marcas.operaciones.minori.view.tree</field>
+      <field name="model">method_conector_marcas.operaciones_minori</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" />
+          <field name="operacion_id" />
+        </tree>
+      </field>
+    </record>
+
+
+    <!--method_hidropower.accion_zoom_botella-->
+    <record id="method_conector_marcas.accion_operaciones_minori_act_window" model="ir.actions.act_window">
+      <field name="name">Tipo de operaciones Minori</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">method_conector_marcas.operaciones_minori</field>
+      <field name="view_mode">tree</field>
+      <field name="view_type">form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+          <!-- Add Text Here -->
+        </p><p>
+          <!-- More details about what a user can do with this object will be OK --> 
+        </p>
+      </field>
+    </record>
+
+    <menuitem id="method_conector_marcas_tipo_operacion_minori" 
+              name="Tipos de Operación Minori" 
+              parent="stock.menu_warehouse_config" 
+              action="method_conector_marcas.accion_operaciones_minori_act_window"
+              sequence="3"/>
+
+  </data>
+</odoo>

@@ -1,0 +1,106 @@
+<odoo>
+  <data>
+
+        <!-- Compañia -->
+    <record id="method_conector_marcas.view_company_form" model="ir.ui.view">
+      <field name="name">method.api.deuda.view.company.form</field>
+      <field name="model">res.company</field>
+      <field name="inherit_id" ref="base.view_company_form"/>
+      <field name="arch" type="xml">
+            <xpath expr="//page" position="after">            
+                <page name="parametros" string="Parámetros Method" groups="base.group_system">
+                  <group>
+                    <group name="conexion" string="Datos Conexión"> 
+                      <field name="url_method"/>
+                      <field name="bd_method"/>
+                      <field name="user_method"/>
+                      <field name="password_method" password="True"/>
+                      <field name="usuario_admin"/>
+                      <field name="pos_category"/>                      
+                      <button name="sync_operaciones" string="Obtener Operaciones Minori" type="object" class="btn-primary"/>
+                      <button name="test_conexion" string="Test Conexión" type="object" class="oe_highlight"/>
+                    </group>
+
+                  </group>
+                </page>
+            </xpath>
+        
+      </field>
+    </record>
+
+    <!-- Productos -->
+
+    <!-- model.name inherit tree view -->
+    <record id="method_conector_marcas.product_template_tree_view" model="ir.ui.view">
+      <field name="name">method.conector.marcas.product.template.tree.view</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_tree_view"/>
+      <field name="arch" type="xml">
+        <field name='active' position='after'>
+          <field name="product_stock_minori" />
+        </field>
+      </field>
+    </record>
+
+    <record id="method_conector_marcas.product_template_form_view_procurement_button" model="ir.ui.view">
+      <field name="name">method.conector.marcas.product.template.form.view.procurement.button</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
+      <field name="arch" type="xml">
+        <header position="inside">
+          <button name="sync_productos" string="Sincronizar Minori" type="object"/>
+        </header>     
+      </field>
+    </record>
+
+    <record id="method_conector_marcas.product_template_form_view" model="ir.ui.view">
+      <field name="name">method.conector.marcas.product.product.template.form.view</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_form_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//page[@name='inventory']" position="after">
+          <page name="Minori" string="Integración Minori">          
+              <div class="row">
+                <button name="sync_stock_productos" string="Sincronizar Stock Minori" type="object" icon="fa-refresh"/>
+              </div>
+              <group>
+                  <field name="product_stock_minori"/>                    
+              </group>
+          </page>
+        </xpath>         
+      </field>
+    </record>
+
+    
+
+
+<!-- Picking Order -->
+    <record id="method_conector_marcas.view_picking_form" model="ir.ui.view">
+      <field name="name">method.conector.marcas.view.picking.form</field>
+      <field name="model">stock.picking</field>
+      <field name="inherit_id" ref="stock.view_picking_form"/>
+      <field name="arch" type="xml">
+        <header position="inside">
+          <button name="sync_po" string="Sincronizar Minori" type="object" states="done"/>
+        </header>      
+        <xpath expr="//page[@name='extra']" position="after">
+          <page name="Minori" string="Integración Minori">
+              <group>
+                  <field name="minori_po_id"/>                  
+              </group>
+          </page>
+        </xpath> 
+        <xpath expr="//field[@name='picking_type_id']" position="after">
+          <field name="es_traspaso_minori"/>        
+          <field name="operacion_minori_id" attrs="{'invisible': [('es_traspaso_minori','=',False)],'required': [('es_traspaso_minori','=',True)]}"/>
+        </xpath> 
+
+        
+
+      </field>
+    </record>
+
+	
+
+  </data>
+</odoo>
