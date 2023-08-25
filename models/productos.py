@@ -208,7 +208,9 @@ class SolicitudIngreso(models.Model):
                             'marca_id':marca_id,
                             'attribute_value_ids':[(4, atributo_id)]                            
                             
-                        }              
+                        }
+                        if atributo_id:
+                            values['attribute_value_ids']=[(4, atributo_id)]                            
                         product_id = models.execute_kw(db, uid, password, 'product.product', 'create', [values])   
                         print(product_id)       
 
