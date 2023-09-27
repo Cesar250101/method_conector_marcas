@@ -26,7 +26,9 @@
         'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
-        'views/stock_picking_type.xml'        
+        'views/stock_picking_type.xml',
+        'data/cron.xml',
+        'views/productos_minori.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

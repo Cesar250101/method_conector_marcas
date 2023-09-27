@@ -1,3 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 operaciones_minori_id,Operaciones_Minori,method_conector_marcas.model_method_conector_marcas_operaciones_minori,stock.group_stock_manager,1,1,1,1
-
+productos_minori_id,ProdcutosMinori,method_conector_marcas.model_product_minori,stock.group_stock_manager,1,1,1,1

@@ -1,0 +1,47 @@
+<odoo>
+  <data>
+
+    <record id="view_productos_minori_form" model="ir.ui.view">
+        <field name="name">view.productos.minori.form</field>
+        <field name="model">product.minori</field>
+        <field name="arch" type="xml">
+            <form string="Productos Store Concept">
+                <group>
+                  <field name="product_minori_id" />
+                  <field name="name" />
+                  <field name="product_minori_default_code" />
+                  <field name="product_id" />                  
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="view_productos_minori" model="ir.ui.view">
+        <field name="name">view.productos.minori</field>
+        <field name="model">product.minori</field>
+        <field name="arch" type="xml">
+            <tree string="Productos Store Concept">
+                <field name="product_minori_id" />
+                <field name="name" />
+                <field name="product_minori_default_code" />
+                <field name="product_id" />                
+            </tree>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="productos_minori">
+        <field name="name">Productos Store Concept</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.minori</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        name="Productos Minori"
+        action="productos_minori"
+        id="method_conector_marcas.productos_minori"
+        parent="stock.menu_stock_inventory_control"
+    />
+
+  </data>
+</odoo>

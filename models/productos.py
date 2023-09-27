@@ -57,6 +57,11 @@ class ModuleName(models.Model):
         if uid:
             raise Warning("Conexión exitosa!")
 
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
+
+    product_minori_id = fields.Many2one(comodel_name='product.minori', string='Id Producto Minori')
+    
 
 class SolicitudIngreso(models.Model):
     _inherit = 'product.template'
