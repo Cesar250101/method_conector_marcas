@@ -13,6 +13,6 @@ class StockMove(models.Model):
     @api.onchange('product_id')
     def _onchange_product_id(self):
         if self.product_id:
-            self.product_minori_id=self.env['product.minori'].search([('product_id','=',self.product_id.id)])
+            self.product_minori_id=self.env['product.minori'].search([('product_id','=',self.product_id.id)],limit=1)
 
     
