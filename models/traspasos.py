@@ -79,13 +79,13 @@ class SolicitudIngreso(models.Model):
                             # product_template_id=l.product_id.product_tmpl_id.sync_productos()
                         product_id=models.execute_kw(db, uid, password,
                                 'product.product', 'search_read',
-                                [[['default_code', '=', l.product_id.default_code]]],
+                                [[['default_code', 'like', l.product_id.default_code]]],
                                 {'limit':1})
                         if not product_id:                        
                             product_template_id=l.product_id.product_tmpl_id.sync_productos()
                             product_id=models.execute_kw(db, uid, password,
                                     'product.product', 'search_read',
-                                    [[['default_code', '=', l.product_id.default_code]]],
+                                    [[['default_code', 'like', l.product_id.default_code]]],
                                     {'limit':1})
 
                         product_id_id=product_id[0]['id']
